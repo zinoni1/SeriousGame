@@ -3,10 +3,8 @@ package com.zenonrodrigo.seriousgame
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.card.MaterialCardView
 
 
@@ -20,10 +18,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-val intent = Intent(this, Nivell3::class.java)
-        startActivity(intent)
-        finish()
-
         // Puedes cargar la vista de inicio o iniciar otra actividad aquí
         // Por ejemplo, si tienes una pantalla de inicio, podrías hacer algo así:
         val intent = Intent(this, Nivell3::class.java)
