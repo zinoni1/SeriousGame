@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: black;
+            height:100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .extrabox{
+            width: 460px;
+            height: 460px;
+            background: #3598dc;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left:0;
+            margin: auto;
+        }
+        .container{
+            width: 380px;
+            height:380px;
+            background: white;
+            padding: 40px 40px;
+            position: relative;
+            box-shadow: 0px 1px 3px 0 black;
+        }
+        
+        header{
+            font-size: 40px;
+            color: #7a7a7a;
+            font-family: inherit;
+        }
+        .input-field input{
+            height: 100%;
+            width: 100%;
+            border: 1px solid silver;
+            padding-left: 15px;
+            outline: none;
+            font-size: 15px;
+            background: #f2f2f2;
+            transition: .4s;
+        }
+        .input-field, form .button{
+            margin: 20px 0;
+            position: relative;
+            height: 50px;
+            width: 100%;
+        }
+        .input-field label{
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translatey(-50%);
+            pointer-events: none;
+            color: grey;
+            font-size: 18px;
+            transition: .4s;
+            color:#7a7a7a
+        }
+        input:focus{
+            border: 1px solid #10a1f2;
+        }
+        input:focus ~ label, input:valid ~ label{
+
+            transform: translatey(-28px);
+            font-size: 16px;
+            color: #3598dc;
+        }
+      .sigin button{
+          height: 50px;
+          width: 100%;
+          border: 1px solid silver;
+          background: #3598dc;
+          color: white;
+          font-family: arial black;
+          font-size: 20px;
+      }
+      .sigin div{
+          margin-top:20px;
+      }
+      .sigin a{
+          color: #7a7a7a;
+          font-weight: bold;
+      }
+    
+.extrabox label{
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    color: white;
+}
+.extrabox a{
+    color: white;
+}
+
+
+     </style>
+</head>
+<body>
+    <div class="extrabox">
+        <label>Dont have an account <a href="">Sign up here</a></label>
+    </div>
+    <div class="container">
+<header>Logn here</header>
+<form>
+    <div class="input-field">
+        <input type="text" required>
+        <label>Email or username</label>
+    </div>
+    <div class="input-field">
+        <input type="password" required>
+        <label>password</label>
+    </div>
+    <div class="sigin">
+        <button>Sign in</button>
+        <div class="lost">
+            <a href="">Lost your password</a>
+        </div>
+    </div>
+</form>
+    </div>
+</body>
+</html>
