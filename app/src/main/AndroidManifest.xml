@@ -27,6 +27,7 @@
             android:value="" />
 
     </activity>
+    <activity android:name=".sopadelletres.Sopa"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 

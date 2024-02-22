@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.86" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.34" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.93" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="786dp"
+        android:layout_height="595dp"
+        android:columnCount="8"
+        android:orientation="horizontal"
+        android:rowCount="5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintVertical_bias="0.601">
+
+        <!-- Fila 1 -->
+        <TextView
+            android:id="@+id/col0fila0"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col1fila0"
+            style="@style/GridItem"
+            android:text="" />
+
+        <!-- Repite para las demás columnas de la fila 1 -->
+
+        <!-- Fila 2 -->
+        <TextView
+            android:id="@+id/col2fila0"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col3fila0"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col4fila0"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col5fila0"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col6fila0"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col7fila0"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col0fila1"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col1fila1"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col2fila1"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col3fila1"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col4fila1"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col5fila1"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col6fila1"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col7fila1"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col0fila2"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col1fila2"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col2fila2"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col3fila2"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col4fila2"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col5fila2"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col6fila2"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col7fila2"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col0fila3"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col1fila3"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col2fila3"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col3fila3"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col4fila3"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col5fila3"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col6fila3"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col7fila3"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col0fila4"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col1fila4"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col2fila4"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col3fila4"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col4fila4"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col5fila4"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col6fila4"
+            style="@style/GridItem"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/col7fila4"
+            style="@style/GridItem"
+            android:text="" />
+
+
+        <!-- Repite para las demás columnas de la fila 2 -->
+
+        <!-- Repite para las demás filas -->
+
+    </GridLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.76" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.14841849" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.54" />
+
+    <ImageView
+        android:id="@+id/imageViewCasatnya"
+        android:layout_width="79dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666"
+        app:srcCompat="@drawable/castanas_removebg_preview" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97811216" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.13543092" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="67dp"
+        android:layout_height="67dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintVertical_bias="0.606"
+        app:srcCompat="@drawable/dibujo_gotas_lluvia_removebg_preview" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="66dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/casa_removebg_preview" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.026385223" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="68dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.081"
+        app:srcCompat="@drawable/bolet" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="68dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintVertical_bias="0.47"
+        app:srcCompat="@drawable/fulla2_removebg_preview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
