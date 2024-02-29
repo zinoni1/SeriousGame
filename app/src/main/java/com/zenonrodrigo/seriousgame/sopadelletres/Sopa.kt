@@ -15,10 +15,10 @@ class Sopa : AppCompatActivity() {
         "I", "J", "K", "L", "M", "N", "O", "P",
         "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
     )
-    private val palabraCasatanya = listOf("C", "A", "S", "T", "A", "N", "Y", "A")
+    private val palabraCastell = listOf("C", "A", "S", "T", "E", "L", "L")
     private val palabraPluja = listOf("P", "L", "U", "J", "A")
     private val palabraBolets = listOf("B", "O", "L", "E", "T", "S")
-    private val palabraFulla = listOf("F", "U", "L", "L", "A")
+    private val palabraRosa = listOf("R", "O", "S", "A")
 
     private val letrasSeleccionadas = mutableListOf<TextView>()
     private var countCompletat = 0
@@ -37,10 +37,10 @@ class Sopa : AppCompatActivity() {
         val filaAleatoriaFulla = (0 until gridLayout.rowCount).filter { it != filaAleatoriaCasatanya && it != filaAleatoriaPluja && it != filaAleatoriaBolets }.shuffled().first()
 
         // OMPLIR FILES AMB CADA PARAULA
-        omplirFila(gridLayout, filaAleatoriaCasatanya, palabraCasatanya)
+        omplirFila(gridLayout, filaAleatoriaCasatanya, palabraCastell)
         omplirFila(gridLayout, filaAleatoriaPluja, palabraPluja)
         omplirFila(gridLayout, filaAleatoriaBolets, palabraBolets)
-        omplirFila(gridLayout, filaAleatoriaFulla, palabraFulla)
+        omplirFila(gridLayout, filaAleatoriaFulla, palabraRosa)
 
         // OMPLIR ELS ALTRES ESPAIS AMB LLETRES ALEATORIES
         for (i in 0 until gridLayout.childCount) {
@@ -85,7 +85,7 @@ class Sopa : AppCompatActivity() {
             }
 
             // MIRA QUE S'HAGI COMPLETAT CADA PARAULA
-            if (isWordComplete(palabraCasatanya)) {
+            if (isWordComplete(palabraCastell)) {
                 letrasSeleccionadas.forEach { it.setBackgroundColor(Color.GREEN) }
                 letrasSeleccionadas.clear()
                 textView.setOnClickListener(null) // Desactivar clic para letras de la palabra completada
@@ -100,7 +100,7 @@ class Sopa : AppCompatActivity() {
                 letrasSeleccionadas.clear()
                 textView.setOnClickListener(null)
                 countCompletat++
-            } else if (isWordComplete(palabraFulla)) {
+            } else if (isWordComplete(palabraRosa)) {
                 letrasSeleccionadas.forEach { it.setBackgroundColor(Color.GREEN) }
                 letrasSeleccionadas.clear()
                 textView.setOnClickListener(null)
