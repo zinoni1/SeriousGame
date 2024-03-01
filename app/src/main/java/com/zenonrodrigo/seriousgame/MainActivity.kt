@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //boton 3 intent al pulsar
+        val boton5 = findViewById<View>(R.id.lvl5)
         val boton3 = findViewById<View>(R.id.lvl3)
         val boton7 = findViewById<View>(R.id.lvl7)
         boton3.setOnClickListener {
@@ -34,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         }
         boton7.setOnClickListener {
             val intent = Intent(this, Sopa::class.java)
+            startActivity(intent)
+        }
+        boton5.setOnClickListener {
+            val intent = Intent(this, nivell5::class.java)
             startActivity(intent)
         }
 
