@@ -27,8 +27,13 @@ class MainActivity : AppCompatActivity() {
 
         //boton 3 intent al pulsar
         val boton5 = findViewById<View>(R.id.lvl5)
+        val boton1 = findViewById<View>(R.id.lvl1)
         val boton3 = findViewById<View>(R.id.lvl3)
         val boton7 = findViewById<View>(R.id.lvl7)
+        boton1.setOnClickListener {
+            val intent = Intent(this, Nivell1::class.java)
+            startActivity(intent)
+        }
         boton3.setOnClickListener {
             val intent = Intent(this, Nivell3::class.java)
             startActivity(intent)

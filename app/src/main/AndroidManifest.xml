@@ -23,6 +23,12 @@
         </activity>
         <activity android:name=".nivell5" />
 
+        <activity android:name=".Nivell1" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+
+        </activity>
         <activity android:name=".Nivell3" >
         <meta-data
             android:name="android.app.lib_name"
