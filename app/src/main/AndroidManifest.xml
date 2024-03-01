@@ -21,6 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".nivell5" />
+
         <activity android:name=".Nivell1" >
             <meta-data
                 android:name="android.app.lib_name"
@@ -34,6 +36,7 @@
 
     </activity>
     <activity android:name=".sopadelletres.Sopa"></activity>
+
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 
