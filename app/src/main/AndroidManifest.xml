@@ -35,6 +35,12 @@
             android:value="" />
 
     </activity>
+        <activity android:name=".Nivell2" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+
+        </activity>
     <activity android:name=".sopadelletres.Sopa"></activity>
 
     </application>
