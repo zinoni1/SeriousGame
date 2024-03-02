@@ -1,6 +1,7 @@
 package com.zenonrodrigo.seriousgame.sopadelletres
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.GridLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.zenonrodrigo.seriousgame.MainActivity
 import com.zenonrodrigo.seriousgame.R
 class Sopa : AppCompatActivity() {
     private val letras = listOf(
@@ -22,13 +24,14 @@ class Sopa : AppCompatActivity() {
 
     private val letrasSeleccionadas = mutableListOf<TextView>()
     private var countCompletat = 0
+    private lateinit var gridLayout: GridLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sopa_de_lletres)
 
-        val gridLayout: GridLayout = findViewById(R.id.gridLayout)
+        gridLayout = findViewById(R.id.gridLayout)
 
         // FILA ALEATORIA PER CADA FILA
         val filaAleatoriaCasatanya = (0 until gridLayout.rowCount).shuffled().first()
@@ -72,59 +75,82 @@ class Sopa : AppCompatActivity() {
     private fun onLetterClick(view: View) {
         val textView = view as TextView
         //NO VA AL ELSE FINS QUE EL CONTADOR SIGUI 4
+
         if (countCompletat != 4) {
-            // VERIFICA SI LA LLETRA JA HA SIGUT SELECCIONADA
-            if (letrasSeleccionadas.contains(textView)) {
-                // Deselecciona la LLETRA I LA  PINTA DE GRIS
-                letrasSeleccionadas.remove(textView)
-                textView.setBackgroundColor(Color.parseColor("#FAFAFA")) // Cambiar el color de nuevo a gris claro
-            } else {
-                // PINTA EL FONS CLICKAT DE BLAU
-                letrasSeleccionadas.add(textView)
-                textView.setBackgroundColor(Color.BLUE) // Cambiar el color a azul cuando se selecciona
+            if (letrasSeleccionadas.isNotEmpty()) {
+                val ultimaLetraSeleccionada = letrasSeleccionadas.last()
+                val indexUltimaLetra = gridLayout.indexOfChild(ultimaLetraSeleccionada)
+                val indexLetraActual = gridLayout.indexOfChild(textView)
+
+                if (!sonLetrasEnLaMismaFila(indexUltimaLetra, indexLetraActual)) {
+                    return
+                }
             }
 
-            // MIRA QUE S'HAGI COMPLETAT CADA PARAULA
+            if (letrasSeleccionadas.contains(textView)) {
+                letrasSeleccionadas.remove(textView)
+                textView.setBackgroundColor(Color.parseColor("#FFFEDC"))
+            } else {
+                letrasSeleccionadas.add(textView)
+                textView.setBackgroundColor(Color.BLUE)
+            }
+
             if (isWordComplete(palabraCastell)) {
-                letrasSeleccionadas.forEach { it.setBackgroundColor(Color.GREEN) }
-                letrasSeleccionadas.clear()
-                textView.setOnClickListener(null) // Desactivar clic para letras de la palabra completada
+                completarPalabra(letrasSeleccionadas)
                 countCompletat++
             } else if (isWordComplete(palabraPluja)) {
-                letrasSeleccionadas.forEach { it.setBackgroundColor(Color.GREEN) }
-                letrasSeleccionadas.clear()
-                textView.setOnClickListener(null)
+                completarPalabra(letrasSeleccionadas)
                 countCompletat++
             } else if (isWordComplete(palabraBolets)) {
-                letrasSeleccionadas.forEach { it.setBackgroundColor(Color.GREEN) }
-                letrasSeleccionadas.clear()
-                textView.setOnClickListener(null)
+                completarPalabra(letrasSeleccionadas)
                 countCompletat++
             } else if (isWordComplete(palabraRosa)) {
-                letrasSeleccionadas.forEach { it.setBackgroundColor(Color.GREEN) }
-                letrasSeleccionadas.clear()
-                textView.setOnClickListener(null)
+                completarPalabra(letrasSeleccionadas)
                 countCompletat++
             }
 
-            // SI ES IGUAL A 4 PORTA A LA FUNCIÓ DE MISSAATGE DE VICTORIA
             if (countCompletat == 4) {
                 mostrarMensajeVictoria()
             }
         }
     }
 
+    private fun sonLetrasEnLaMismaFila(index1: Int, index2: Int): Boolean {
+        val fila1 = index1 / gridLayout.columnCount
+        val fila2 = index2 / gridLayout.columnCount
+
+        return fila1 == fila2
+    }
+
     private fun isWordComplete(palabra: List<String>): Boolean {
         return letrasSeleccionadas.map { it.text.toString() } == palabra
+    }
+
+    private fun completarPalabra(letras: List<TextView>) {
+        letras.forEach {
+            it.setBackgroundColor(Color.GREEN)
+            it.setOnClickListener(null)
+        }
+        letrasSeleccionadas.clear()
     }
 
     private fun mostrarMensajeVictoria() {
         AlertDialog.Builder(this)
             .setTitle("¡Felicitats!")
             .setMessage("Has completat totes les paraules.")
-            .setPositiveButton("Acceptar") { _, _ ->
-                finish()
+            .setPositiveButton("Anar al Menú") { _, _ ->
+                volverAlMenu()
+            }
+            .setNegativeButton("Anar al Nivell Dos") { _, _ ->
+                volverAlMenu()
             }
             .show()
     }
+
+    private fun volverAlMenu() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()  // Esto cierra la actividad actual y vuelve al menú si es la actividad principal
+    }
+
 }

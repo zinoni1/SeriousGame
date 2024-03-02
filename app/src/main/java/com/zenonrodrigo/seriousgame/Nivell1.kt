@@ -6,6 +6,10 @@ import android.os.Bundle
 import android.widget.MediaController
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import com.zenonrodrigo.seriousgame.room.roomDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class Nivell1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,9 +28,11 @@ class Nivell1 : AppCompatActivity() {
         // Listener para detectar cuando el video termina
         videoView.setOnCompletionListener {
             // Al terminar el video, lanzar la actividad principal
+
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish() // Esto asegura que la actividad actual se cierre
         }
     }
+
 }

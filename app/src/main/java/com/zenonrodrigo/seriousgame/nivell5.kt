@@ -7,13 +7,21 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.zenonrodrigo.seriousgame.room.roomDao
+import com.zenonrodrigo.seriousgame.room.roomTask
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class nivell5 : AppCompatActivity(), View.OnDragListener {
 
     private lateinit var phraseTextView: TextView
     private lateinit var dracImageView: ImageView
     private lateinit var solutionAnimal: String
+    private lateinit var taskDao: roomDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +30,8 @@ class nivell5 : AppCompatActivity(), View.OnDragListener {
         // Inicializa las vistas
         phraseTextView = findViewById(R.id.textView)
         dracImageView = findViewById(R.id.drac)
-
+        val db = (applicationContext as App).db
+        taskDao = db.taskDao()
         // Lista de animales y elección aleatoria
         val animals = listOf("porc", "gallina", "cabra")
         solutionAnimal = animals.random()
@@ -70,14 +79,28 @@ class nivell5 : AppCompatActivity(), View.OnDragListener {
                     val draggedAnimal = draggedView?.tag as? String
 
                     if (draggedAnimal == solutionAnimal) {
-                        Toast.makeText(this, "¡Has ganado!", Toast.LENGTH_SHORT).show()
-                        finish() // Finaliza la actividad
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val task = roomTask(nivell = 5, punts = 1, completat = true)
+                            taskDao.insertLvl(task)
+
+                            // Cambiar el contexto a Dispatchers.Main para mostrar el diálogo
+                            withContext(Dispatchers.Main) {
+                                AlertDialog.Builder(this@nivell5)
+                                    .setTitle("¡Felicitats!")
+                                    .setMessage("Has completat el joc.")
+                                    .setPositiveButton("Acceptar") { _, _ ->
+                                        finish()
+                                    }
+                                    .show()
+                            }
+                        }
+                    }// Finaliza la actividad
                     } else {
                         Toast.makeText(this, "Inténtalo de nuevo", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
-        }
+
         return true
     }
 }

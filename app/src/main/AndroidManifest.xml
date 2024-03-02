@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.zenonrodrigo.seriousgame">
 
     <application
-        android:allowBackup="true"
+        android:name=".App"
+       android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -22,17 +24,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".nivell5" />
-
+        <activity android:name=".nivell4" />
         <activity android:name=".Nivell1" >
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name="android.arch.persistence.room.RoomDatabase"
+                android:value="com.zenonrodrigo.seriousgame.room.Joc" />
 
         </activity>
         <activity android:name=".Nivell3" >
-        <meta-data
-            android:name="android.app.lib_name"
-            android:value="" />
+            <meta-data
+                android:name="android.arch.persistence.room.RoomDatabase"
+                android:value="com.zenonrodrigo.seriousgame.room.Joc" />
 
     </activity>
         <activity android:name=".Nivell2" >
