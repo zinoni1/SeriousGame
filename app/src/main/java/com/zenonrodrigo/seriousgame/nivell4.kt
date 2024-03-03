@@ -137,6 +137,7 @@ class nivell4 : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val task = roomTask(nivell = 4, punts = 1, completat = true)
             taskDao.insertLvl(task)
+            taskDao.updateLvl(task)
 
             // Cambiar el contexto a Dispatchers.Main para mostrar el diálogo
             withContext(Dispatchers.Main) {

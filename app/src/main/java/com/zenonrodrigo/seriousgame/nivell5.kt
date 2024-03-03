@@ -78,6 +78,7 @@ class nivell5 : AppCompatActivity(), View.OnDragListener {
                         CoroutineScope(Dispatchers.IO).launch {
                             val task = roomTask(nivell = 5, punts = 1, completat = true)
                             taskDao.insertLvl(task)
+                            taskDao.updateLvl(task)
 
                             withContext(Dispatchers.Main) {
                                 AlertDialog.Builder(this@nivell5)
