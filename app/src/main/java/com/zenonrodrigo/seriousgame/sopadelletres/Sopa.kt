@@ -5,7 +5,9 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.View.VISIBLE
 import android.widget.GridLayout
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -146,7 +148,11 @@ class Sopa : AppCompatActivity() {
     private fun mostrarMensajeVictoria() {
         CoroutineScope(Dispatchers.IO).launch {
             val task = roomTask(nivell = 6, punts = 1, completat = true)
-            taskDao.insertLvl(task)
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val task = roomTask(nivell = 1, punts = 1, completat = true)
+                taskDao.insertLvl(task)
+                taskDao.updateLvl(task)
 
             withContext(Dispatchers.Main) {
                 AlertDialog.Builder(this@Sopa)
@@ -158,12 +164,6 @@ class Sopa : AppCompatActivity() {
                     .show()
             }
         }
-    }
-
-    private fun volverAlMenu() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()  // Esto cierra la actividad actual y vuelve al menú si es la actividad principal
-    }
+    } }
 
 }

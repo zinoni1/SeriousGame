@@ -20,8 +20,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toTopOf="@+id/guideline16" />
 
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline14"
         android:layout_width="wrap_content"
@@ -64,7 +62,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guideline18" />
 
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline18"
         android:layout_width="wrap_content"
@@ -79,10 +76,8 @@
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.597"
         app:layout_constraintStart_toStartOf="@+id/guideline15"
-        app:layout_constraintTop_toTopOf="@+id/guideline17"
-        app:layout_constraintVertical_bias="0.84" />
+        app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -107,12 +102,12 @@
 
     <Button
         android:id="@+id/lvl5"
-        android:layout_width="87dp"
-        android:layout_height="78dp"
+        android:layout_width="0dp"
+        android:layout_height="101dp"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintBottom_toTopOf="@+id/guideline17"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineBlupblupblap"
+        app:layout_constraintHorizontal_bias="0.645"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline16"
         app:layout_constraintVertical_bias="0.0" />
@@ -137,7 +132,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
         app:layout_constraintGuide_end="200dp" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -176,6 +170,189 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="145dp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="94dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintEnd_toStartOf="@+id/guideline15"
+        app:layout_constraintStart_toEndOf="@+id/guideline14"
+        app:layout_constraintTop_toBottomOf="@+id/guideline18"
+        app:srcCompat="@drawable/obras" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="66dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="9dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toEndOf="@+id/guideline15"
+        app:layout_constraintTop_toBottomOf="@+id/guideline18"
+        app:srcCompat="@drawable/obras" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="63dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintStart_toEndOf="@+id/guidelineBlupblupblap"
+        app:layout_constraintTop_toBottomOf="@+id/guideline18"
+        app:srcCompat="@drawable/obras" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline11"
+        app:layout_constraintTop_toBottomOf="@+id/guideline18"
+        app:srcCompat="@drawable/obras" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="60dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="348dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline18"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineBlupblupblap"
+        app:layout_constraintStart_toEndOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/guideline23"
+        app:srcCompat="@drawable/obras" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="56dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="122dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline18"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toEndOf="@+id/guideline15"
+        app:srcCompat="@drawable/obras" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="43dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="101dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="189dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineBlupblupblap"
+        app:layout_constraintStart_toEndOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/guideline23"
+        app:srcCompat="@drawable/obras" />
+
+    <ImageView
+        android:id="@+id/completedLvl1"
+        android:visibility="invisible"
+        android:layout_width="126dp"
+        android:layout_height="103dp"
+        android:layout_marginStart="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toEndOf="@+id/guideline15"
+        app:layout_constraintTop_toTopOf="@+id/guideline17"
+        app:layout_constraintVertical_bias="0.807"
+        app:srcCompat="@drawable/completed" />
+
+    <ImageView
+        android:id="@+id/completedLvl2"
+        android:visibility="invisible"
+        android:layout_width="200dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline14"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline17"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/completed" />
+
+    <ImageView
+        android:id="@+id/completedLvl3"
+        android:visibility="invisible"
+        android:layout_width="153dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline22"
+        app:layout_constraintEnd_toStartOf="@+id/lvl1"
+        app:layout_constraintStart_toEndOf="@+id/completedLvl2"
+        app:layout_constraintTop_toBottomOf="@+id/guideline16"
+        app:srcCompat="@drawable/completed" />
+
+    <ImageView
+        android:id="@+id/completedLvl5"
+        android:visibility="invisible"
+        android:layout_width="147dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline22"
+        app:layout_constraintEnd_toStartOf="@+id/lvl4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/guideline18"
+        app:layout_constraintVertical_bias="0.029"
+        app:srcCompat="@drawable/completed" />
+
+    <ImageView
+        android:id="@+id/completedLvl4"
+        android:visibility="invisible"
+        android:layout_width="184dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="180dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.991"
+        app:layout_constraintStart_toEndOf="@+id/completedLvl5"
+        app:layout_constraintTop_toTopOf="@+id/guideline16"
+        app:srcCompat="@drawable/completed" />
+
+    <ImageView
+        android:id="@+id/completedLvl6"
+        android:visibility= "invisible"
+        android:layout_width="143dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline17"
+        app:layout_constraintEnd_toStartOf="@+id/guideline14"
+        app:layout_constraintHorizontal_bias="0.704"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline18"
+        app:srcCompat="@drawable/completed" />
     <Button
         android:id="@+id/lvl2"
         android:layout_width="106dp"
@@ -187,5 +364,4 @@
         app:layout_constraintStart_toStartOf="@+id/guideline11"
         app:layout_constraintTop_toTopOf="@+id/guideline16"
         app:layout_constraintVertical_bias="0.637" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -60,6 +60,7 @@ class Nivell3 : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 val task = roomTask(nivell = 3, punts = 1, completat = true)
                 taskDao.insertLvl(task)
+                taskDao.updateLvl(task)
             }
         }
     }

@@ -3,6 +3,8 @@ package com.zenonrodrigo.seriousgame
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import android.widget.MediaController
 import android.widget.VideoView
 import androidx.appcompat.app.AlertDialog
@@ -32,9 +34,11 @@ class Nivell1 : AppCompatActivity() {
 
         videoView.setOnCompletionListener {
 
+
             CoroutineScope(Dispatchers.IO).launch {
                 val task = roomTask(nivell = 1, punts = 1, completat = true)
                 taskDao.insertLvl(task)
+                taskDao.updateLvl(task)
 
                 withContext(Dispatchers.Main) {
                     AlertDialog.Builder(this@Nivell1)
@@ -45,8 +49,10 @@ class Nivell1 : AppCompatActivity() {
                         }
                         .show()
                 }
+
             }
         }
     }
+
 
 }
