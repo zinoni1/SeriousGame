@@ -42,10 +42,8 @@ class nivell5 : AppCompatActivity(), View.OnDragListener {
         // Setea el texto de la frase
         phraseTextView.text = phrase
 
-        // Configura el oyente de arrastre para la imagen del dragón
         dracImageView.setOnDragListener(this)
 
-        // Agrega el listener de drag para las imágenes de los animales
         val onTouchListener = View.OnTouchListener { view, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 val dragData = View.DragShadowBuilder(view)
@@ -54,14 +52,12 @@ class nivell5 : AppCompatActivity(), View.OnDragListener {
             true
         }
 
-        // Asigna los oyentes de arrastre para cada imagen de animal
         val animalImageViews = listOf(
             R.id.porc, R.id.porc1, R.id.porc2,
             R.id.gallina, R.id.gallina1,
             R.id.cabra, R.id.cabra1
         )
 
-        // Configura el atributo 'tag' y el oyente de arrastre para cada imagen de animal
         for (imageViewId in animalImageViews) {
             val imageView = findViewById<ImageView>(imageViewId)
             imageView.tag = imageView.contentDescription?.toString() ?: ""
@@ -83,7 +79,6 @@ class nivell5 : AppCompatActivity(), View.OnDragListener {
                             val task = roomTask(nivell = 5, punts = 1, completat = true)
                             taskDao.insertLvl(task)
 
-                            // Cambiar el contexto a Dispatchers.Main para mostrar el diálogo
                             withContext(Dispatchers.Main) {
                                 AlertDialog.Builder(this@nivell5)
                                     .setTitle("¡Felicitats!")
@@ -94,9 +89,9 @@ class nivell5 : AppCompatActivity(), View.OnDragListener {
                                     .show()
                             }
                         }
-                    }// Finaliza la actividad
+                    }
                     } else {
-                        Toast.makeText(this, "Inténtalo de nuevo", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Intenta-ho de nou", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
