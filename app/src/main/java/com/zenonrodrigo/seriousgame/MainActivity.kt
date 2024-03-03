@@ -5,39 +5,47 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import com.zenonrodrigo.seriousgame.room.roomDao
-import com.zenonrodrigo.seriousgame.room.roomTask
 import com.zenonrodrigo.seriousgame.sopadelletres.Sopa
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var taskDao: roomDao
+    private lateinit var punts: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val db = (applicationContext as App).db
         taskDao = db.taskDao()
-        //boton 3 intent al pulsar
+        punts = findViewById<TextView>(R.id.punts)
+
+        setupButtons()
+        loadPoints()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadPoints()
+    }
+
+    private fun setupButtons() {
+        val boton2 = findViewById<View>(R.id.lvl2)
         val boton5 = findViewById<View>(R.id.lvl5)
         val boton1 = findViewById<View>(R.id.lvl1)
         val boton3 = findViewById<View>(R.id.lvl3)
         val boton6 = findViewById<View>(R.id.lvl6)
         val boton4 = findViewById<View>(R.id.lvl4)
-        val punts = findViewById<TextView>(R.id.punts)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val totalPunts = taskDao.getTotalPunts()
-            withContext(Dispatchers.Main) {
-                punts.text = "Punts: $totalPunts"
-            }
-
+        boton2.setOnClickListener {
+            val intent = Intent(this, Nivell2::class.java)
+            startActivity(intent)
         }
+
         boton4.setOnClickListener {
             val intent = Intent(this, nivell4::class.java)
             startActivity(intent)
@@ -59,4 +67,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    private fun loadPoints() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val puntsTotal = taskDao.getTotalPunts()
+            withContext(Dispatchers.Main) {
+                punts.text = "Punts: $puntsTotal"
+            }
+        }
+    }
+
 }
