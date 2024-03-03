@@ -10,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.RoomDatabase
 import com.zenonrodrigo.seriousgame.room.roomDao
 import com.zenonrodrigo.seriousgame.room.roomTask
 import kotlinx.coroutines.CoroutineScope
@@ -42,7 +41,6 @@ class nivell4 : AppCompatActivity() {
         val db = (applicationContext as App).db
         taskDao = db.taskDao()
 
-        // Mezclar las combinaciones aleatoriamente
         val combinacionesAleatorias = combinaciones.shuffled()
 
         setupElemento(R.id.textViewElement1, R.id.imageViewElement1, combinacionesAleatorias[0])

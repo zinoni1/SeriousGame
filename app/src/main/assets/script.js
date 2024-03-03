@@ -23,7 +23,9 @@ function matchCards(img1, img2) {
         matched++;
         if(matched == 8) {
             setTimeout(() => {
-                return shuffleCard();
+                window.AndroidFunction.redirectToMainActivity();
+
+                window.AndroidFunction.insertTask();
             }, 1000);
         }
         cardOne.removeEventListener("click", flipCard);
@@ -59,7 +61,8 @@ function shuffleCard() {
 }
 
 shuffleCard();
-    
+
 cards.forEach(card => {
     card.addEventListener("click", flipCard);
 });
+

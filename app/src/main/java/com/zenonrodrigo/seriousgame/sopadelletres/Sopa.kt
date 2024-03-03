@@ -9,8 +9,16 @@ import android.widget.GridLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.zenonrodrigo.seriousgame.App
 import com.zenonrodrigo.seriousgame.MainActivity
 import com.zenonrodrigo.seriousgame.R
+import com.zenonrodrigo.seriousgame.room.roomDao
+import com.zenonrodrigo.seriousgame.room.roomTask
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 class Sopa : AppCompatActivity() {
     private val letras = listOf(
         "A", "B", "C", "D", "E", "F", "G", "H",
@@ -18,10 +26,10 @@ class Sopa : AppCompatActivity() {
         "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
     )
     private val palabraCastell = listOf("C", "A", "S", "T", "E", "L", "L")
-    private val palabraPluja = listOf("P", "L", "U", "J", "A")
-    private val palabraBolets = listOf("B", "O", "L", "E", "T", "S")
+    private val palabraPluja = listOf("D", "R", "A", "C")
+    private val palabraBolets = listOf("C", "A", "V", "A", "L", "L", "E", "R")
     private val palabraRosa = listOf("R", "O", "S", "A")
-
+    private lateinit var taskDao: roomDao
     private val letrasSeleccionadas = mutableListOf<TextView>()
     private var countCompletat = 0
     private lateinit var gridLayout: GridLayout
@@ -32,7 +40,8 @@ class Sopa : AppCompatActivity() {
         setContentView(R.layout.sopa_de_lletres)
 
         gridLayout = findViewById(R.id.gridLayout)
-
+        val db = (applicationContext as App).db
+        taskDao = db.taskDao()
         // FILA ALEATORIA PER CADA FILA
         val filaAleatoriaCasatanya = (0 until gridLayout.rowCount).shuffled().first()
         val filaAleatoriaPluja = (0 until gridLayout.rowCount).filter { it != filaAleatoriaCasatanya }.shuffled().first()
@@ -135,16 +144,20 @@ class Sopa : AppCompatActivity() {
     }
 
     private fun mostrarMensajeVictoria() {
-        AlertDialog.Builder(this)
-            .setTitle("¡Felicitats!")
-            .setMessage("Has completat totes les paraules.")
-            .setPositiveButton("Anar al Menú") { _, _ ->
-                volverAlMenu()
+        CoroutineScope(Dispatchers.IO).launch {
+            val task = roomTask(nivell = 6, punts = 1, completat = true)
+            taskDao.insertLvl(task)
+
+            withContext(Dispatchers.Main) {
+                AlertDialog.Builder(this@Sopa)
+                    .setTitle("¡Felicitats!")
+                    .setMessage("Has completat el joc.")
+                    .setPositiveButton("Acceptar") { _, _ ->
+                        finish()
+                    }
+                    .show()
             }
-            .setNegativeButton("Anar al Nivell Dos") { _, _ ->
-                volverAlMenu()
-            }
-            .show()
+        }
     }
 
     private fun volverAlMenu() {
