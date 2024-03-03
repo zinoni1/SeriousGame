@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val db = (applicationContext as App).db
         taskDao = db.taskDao()
         //boton 3 intent al pulsar
+        val boton2 = findViewById<View>(R.id.lvl2)
         val boton5 = findViewById<View>(R.id.lvl5)
         val boton1 = findViewById<View>(R.id.lvl1)
         val boton3 = findViewById<View>(R.id.lvl3)
@@ -44,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         }
         boton1.setOnClickListener {
             val intent = Intent(this, Nivell1::class.java)
+            startActivity(intent)
+        }
+        boton2.setOnClickListener {
+            val intent = Intent(this, Nivell2::class.java)
             startActivity(intent)
         }
         boton3.setOnClickListener {
