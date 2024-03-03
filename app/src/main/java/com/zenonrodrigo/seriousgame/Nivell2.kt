@@ -44,7 +44,6 @@ class Nivell2 : AppCompatActivity() {
         }
 
         // Establecer OnClickListener para las ImageView de destino
-        // Establecer OnClickListener para las ImageView de destino
         resultViews.forEachIndexed { index, resultView ->
             resultView.setOnClickListener {
                 selectedImage?.let { selectedImageView ->
