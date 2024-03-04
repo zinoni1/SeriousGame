@@ -18,29 +18,29 @@ import kotlinx.coroutines.withContext
 
 class nivell5 : AppCompatActivity(), View.OnDragListener {
 
-    private lateinit var phraseTextView: TextView
+    private lateinit var fraseTextView: TextView
     private lateinit var dracImageView: ImageView
-    private lateinit var solutionAnimal: String
+    private lateinit var animalSolucio: String
     private lateinit var taskDao: roomDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.nivell5)
 
-        // Inicializa las vistas
-        phraseTextView = findViewById(R.id.textView)
+        // Inicialitza les vistes
+        fraseTextView = findViewById(R.id.textView)
         dracImageView = findViewById(R.id.drac)
         val db = (applicationContext as App).db
         taskDao = db.taskDao()
-        // Lista de animales y elección aleatoria
+        // Llista d'animals i elecció aleatòria
         val animals = listOf("porc", "gallina", "cabra")
-        solutionAnimal = animals.random()
+        animalSolucio = animals.random()
 
-        // Texto de la frase
-        val phrase = "Me quiero comer un $solutionAnimal ."
+        // Text de la frase
+        val frase = "Vull menjar-me un/a $animalSolucio."
 
-        // Setea el texto de la frase
-        phraseTextView.text = phrase
+        // Defineix el text de la frase
+        fraseTextView.text = frase
 
         dracImageView.setOnDragListener(this)
 
@@ -74,11 +74,11 @@ class nivell5 : AppCompatActivity(), View.OnDragListener {
                     val draggedView = event.localState as? ImageView
                     val draggedAnimal = draggedView?.tag as? String
 
-                    if (draggedAnimal == solutionAnimal) {
+                    if (draggedAnimal == animalSolucio) {
                         CoroutineScope(Dispatchers.IO).launch {
-                            val task = roomTask(nivell = 5, punts = 1, completat = true)
-                            taskDao.insertLvl(task)
-                            taskDao.updateLvl(task)
+                            val tasca = roomTask(nivell = 5, punts = 1, completat = true)
+                            taskDao.insertLvl(tasca)
+                            taskDao.updateLvl(tasca)
 
                             withContext(Dispatchers.Main) {
                                 AlertDialog.Builder(this@nivell5)
@@ -91,11 +91,11 @@ class nivell5 : AppCompatActivity(), View.OnDragListener {
                             }
                         }
                     }
-                    } else {
-                        Toast.makeText(this, "Intenta-ho de nou", Toast.LENGTH_SHORT).show()
-                    }
+                } else {
+                    Toast.makeText(this, "Intenta-ho de nou", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
 
         return true
     }

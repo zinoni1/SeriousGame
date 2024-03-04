@@ -23,13 +23,13 @@ class Nivell3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.nivell3)
         webView = findViewById(R.id.webview)
-
+  // inicialitzar la base de dades i carregar el nivell
         setDesktopMode(webView, true)
            val db = (applicationContext as App).db
         taskDao = db.taskDao()
         load()
     }
-
+// funció per a carregar el nivell
     fun load() {
         val settings = webView!!.settings
         settings.javaScriptEnabled = true
@@ -44,9 +44,12 @@ class Nivell3 : AppCompatActivity() {
         webView!!.isScrollbarFadingEnabled = true
         webView!!.webChromeClient = object : WebChromeClient() {}
         webView!!.webViewClient = Callback()
+    // funció per a carregar el nivell
         webView!!.addJavascriptInterface(WebAppInterface(this, taskDao), "AndroidFunction")
+    // carregar el nivell (html)
         webView!!.loadUrl("file:///android_asset/index.html")
     }
+    // funció per a configurar la redirecció a la pantalla principal i per a inserir el nivell a la base de dades
     class WebAppInterface(private val mContext: Context, private val taskDao: roomDao) {
 
         @JavascriptInterface
@@ -69,7 +72,6 @@ class Nivell3 : AppCompatActivity() {
             return false
         }
     }
-
     fun setDesktopMode(webView: WebView?, enabled: Boolean) {
         var newUserAgent = webView!!.settings.userAgentString
         if (enabled) {
@@ -90,7 +92,7 @@ class Nivell3 : AppCompatActivity() {
         webView.settings.loadWithOverviewMode = enabled
         webView.reload()
     }
-
+  //funció per a tornar a la pantalla principal quan es prem el botó de tornar enrere
     override fun onBackPressed() {
         if (webView != null && webView!!.canGoBack()) {
             webView!!.goBack()

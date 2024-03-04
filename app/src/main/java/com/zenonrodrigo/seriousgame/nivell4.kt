@@ -18,108 +18,108 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class nivell4 : AppCompatActivity() {
-    private var firstClicked: View? = null
-    private var secondClicked: View? = null
-    private var combinacionesCorrectas: Int = 0
+    private var primerClicat: View? = null
+    private var segonClicat: View? = null
+    private var combinacionsCorrectes: Int = 0
     private lateinit var taskDao: roomDao
     private val handler = Handler(Looper.getMainLooper())
-
-    private val combinaciones = mutableListOf(
-        Combinacion("Castell", R.drawable.castelldeconte),
-        Combinacion("Drac", R.drawable.drac),
-        Combinacion("Rosa", R.drawable.rosa),
-        Combinacion("Cavaller", R.drawable.cavaller),
-        Combinacion("Cavall", R.drawable.cavall),
-        Combinacion("Princesa", R.drawable.princesa),
+//combinacions de paraules amb imatges
+    private val combinacions = mutableListOf(
+        Combinacio("Castell", R.drawable.castelldeconte),
+        Combinacio("Drac", R.drawable.drac),
+        Combinacio("Rosa", R.drawable.rosa),
+        Combinacio("Cavaller", R.drawable.cavaller),
+        Combinacio("Cavall", R.drawable.cavall),
+        Combinacio("Princesa", R.drawable.princesa),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.nivell4)
 
-        combinaciones.shuffle()
+        combinacions.shuffle()
         val db = (applicationContext as App).db
         taskDao = db.taskDao()
 
-        val combinacionesAleatorias = combinaciones.shuffled()
+        val combinacionsAleatories = combinacions.shuffled()
 
-        setupElemento(R.id.textViewElement1, R.id.imageViewElement1, combinacionesAleatorias[0])
-        setupElemento(R.id.textViewElement2, R.id.imageViewElement2, combinacionesAleatorias[1])
-        setupElemento(R.id.textViewElement3, R.id.imageViewElement3, combinacionesAleatorias[2])
+        setupElement(textViewId = R.id.textViewElement1, imageViewId = R.id.imageViewElement1, combinacio = combinacionsAleatories[0])
+        setupElement(textViewId = R.id.textViewElement2, imageViewId = R.id.imageViewElement2, combinacio = combinacionsAleatories[1])
+        setupElement(textViewId = R.id.textViewElement3, imageViewId = R.id.imageViewElement3, combinacio = combinacionsAleatories[2])
     }
+//configura els elements
+    private fun setupElement(textViewId: Int, imageViewId: Int, combinacio: Combinacio) {
+        val textViewElement = findViewById<TextView>(textViewId)
+        val imageViewElement = findViewById<ImageView>(imageViewId)
 
-    private fun setupElemento(textViewId: Int, imageViewId: Int, combinacion: Combinacion) {
-        val textViewElemento = findViewById<TextView>(textViewId)
-        val imageViewElemento = findViewById<ImageView>(imageViewId)
+        textViewElement.text = combinacio.paraula
+        imageViewElement.setImageResource(combinacio.imatge)
 
-        textViewElemento.text = combinacion.palabra
-        imageViewElemento.setImageResource(combinacion.imagen)
-
-        textViewElemento.setOnClickListener {
-            onElementClicked(textViewElemento)
+        textViewElement.setOnClickListener {
+            onElementClicked(textViewElement)
         }
 
-        imageViewElemento.setOnClickListener {
-            onElementClicked(imageViewElemento)
+        imageViewElement.setOnClickListener {
+            onElementClicked(imageViewElement)
         }
     }
-
+//quan es clica un element
     private fun onElementClicked(view: View) {
         if (view.tag == null && view.isEnabled) {
-            if (firstClicked == null) {
-                firstClicked = view
+            if (primerClicat == null) {
+                primerClicat = view
                 view.setBackgroundColor(Color.YELLOW)
-            } else if (secondClicked == null) {
-                secondClicked = view
+            } else if (segonClicat == null) {
+                segonClicat = view
                 view.setBackgroundColor(Color.YELLOW)
 
-                if (isCorrectCombination(firstClicked!!, secondClicked!!)) {
-                    handleCorrectCombination()
+                if (esCombinacioCorrecta(primerClicat!!, segonClicat!!)) {
+                    gestionarCombinacioCorrecta()
                 } else {
-                    handleIncorrectCombination()
+                    gestionarCombinacioIncorrecta()
                 }
             }
         }
     }
+    //comprova si la combinacio es correcta
+    private fun esCombinacioCorrecta(view1: View, view2: View): Boolean {
+        val combinacio1 = obtenirCombinacio(view1)
+        val combinacio2 = obtenirCombinacio(view2)
 
-    private fun isCorrectCombination(view1: View, view2: View): Boolean {
-        val combinacion1 = obtenerCombinacion(view1)
-        val combinacion2 = obtenerCombinacion(view2)
-
-        return combinacion1 != null && combinacion2 != null &&
-                (combinacion1.palabra == combinacion2.palabra && combinacion1.imagen == combinacion2.imagen)
+        return combinacio1 != null && combinacio2 != null &&
+                (combinacio1.paraula == combinacio2.paraula && combinacio1.imatge == combinacio2.imatge)
     }
-
-    private fun obtenerCombinacion(view: View): Combinacion? {
+    //combina les paraules amb les imatges
+    private fun obtenirCombinacio(view: View): Combinacio? {
         return when (view.id) {
-            R.id.textViewElement1 -> combinaciones[0]
-            R.id.imageViewElement1 -> combinaciones[0]
-            R.id.textViewElement2 -> combinaciones[1]
-            R.id.imageViewElement2 -> combinaciones[1]
-            R.id.textViewElement3 -> combinaciones[2]
-            R.id.imageViewElement3 -> combinaciones[2]
+            R.id.textViewElement1 -> combinacions[0]
+            R.id.imageViewElement1 -> combinacions[0]
+            R.id.textViewElement2 -> combinacions[1]
+            R.id.imageViewElement2 -> combinacions[1]
+            R.id.textViewElement3 -> combinacions[2]
+            R.id.imageViewElement3 -> combinacions[2]
             else -> null
         }
     }
+    //si la combinacio es correcta
+    private fun gestionarCombinacioCorrecta() {
+        primerClicat?.visibility = View.INVISIBLE
+        segonClicat?.visibility = View.INVISIBLE
 
-    private fun handleCorrectCombination() {
-        firstClicked?.visibility = View.INVISIBLE
-        secondClicked?.visibility = View.INVISIBLE
+        Toast.makeText(this, "¡Correcte!", Toast.LENGTH_SHORT).show()
+        combinacionsCorrectes++
 
-        Toast.makeText(this, "¡Correcto!", Toast.LENGTH_SHORT).show()
-        combinacionesCorrectas++
-
-        if (combinacionesCorrectas == 3) {
-            mostrarMensajeVictoria()
+        if (combinacionsCorrectes == 3) {
+            mostrarMissatgeVictoria()
         }
 
         resetIncorrectViews()
     }
-
-    private fun handleIncorrectCombination() {
-        firstClicked?.setBackgroundColor(Color.RED)
-        secondClicked?.setBackgroundColor(Color.RED)
-        Toast.makeText(this, "Incorrecto, intenta de nuevo", Toast.LENGTH_SHORT).show()
+//si la combinacio es incorrecte
+    private fun gestionarCombinacioIncorrecta() {
+        primerClicat?.setBackgroundColor(Color.RED)
+        segonClicat?.setBackgroundColor(Color.RED)
+        Toast.makeText(this, "Incorrecte, prova de nou", Toast.LENGTH_SHORT).show()
 
         handler.postDelayed({
             resetIncorrectViews()
@@ -127,19 +127,19 @@ class nivell4 : AppCompatActivity() {
     }
 
     private fun resetIncorrectViews() {
-        firstClicked?.setBackgroundColor(Color.TRANSPARENT)
-        secondClicked?.setBackgroundColor(Color.TRANSPARENT)
-        firstClicked = null
-        secondClicked = null
+        primerClicat?.setBackgroundColor(Color.TRANSPARENT)
+        segonClicat?.setBackgroundColor(Color.TRANSPARENT)
+        primerClicat = null
+        segonClicat = null
     }
 
-    private fun mostrarMensajeVictoria() {
+    private fun mostrarMissatgeVictoria() {
         CoroutineScope(Dispatchers.IO).launch {
-            val task = roomTask(nivell = 4, punts = 1, completat = true)
-            taskDao.insertLvl(task)
-            taskDao.updateLvl(task)
+            val tasca = roomTask(nivell = 4, punts = 1, completat = true)
+            taskDao.insertLvl(tasca)
+            taskDao.updateLvl(tasca)
 
-            // Cambiar el contexto a Dispatchers.Main para mostrar el diálogo
+            // Canviar el contexte a Dispatchers.Main per mostrar el diàleg
             withContext(Dispatchers.Main) {
                 AlertDialog.Builder(this@nivell4)
                     .setTitle("¡Felicitats!")
@@ -152,6 +152,5 @@ class nivell4 : AppCompatActivity() {
         }
     }
 
-
-    data class Combinacion(val palabra: String, val imagen: Int)
+    data class Combinacio(val paraula: String, val imatge: Int)
 }

@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // inicialitzar la base de dades i el layout de la pantalla principal
         setContentView(R.layout.activity_main)
         val db = (applicationContext as App).db
         taskDao = db.taskDao()
@@ -27,12 +28,12 @@ class MainActivity : AppCompatActivity() {
         setupButtons()
         loadPoints()
     }
-
+// tornar a cargar els punts cada cop que es torna a la pantalla principal
     override fun onResume() {
         super.onResume()
         loadPoints()
     }
-
+    // funció per a configurar els botons de la pantalla principal
     private fun setupButtons() {
         val boton2 = findViewById<View>(R.id.lvl2)
         val boton5 = findViewById<View>(R.id.lvl5)
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         val boton3 = findViewById<View>(R.id.lvl3)
         val boton6 = findViewById<View>(R.id.lvl6)
         val boton4 = findViewById<View>(R.id.lvl4)
-
+ // funció per a obrir la pantalla de nivell 2, 4, 1, 3, 6 i 5
         boton2.setOnClickListener {
             val intent = Intent(this, Nivell2::class.java)
             startActivity(intent)
