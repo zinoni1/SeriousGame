@@ -4,18 +4,26 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.zenonrodrigo.seriousgame.room.roomDao
+import com.zenonrodrigo.seriousgame.room.roomTask
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Nivell2 : AppCompatActivity() {
     private lateinit var imageViews: List<ImageView>
     private lateinit var resultViews: List<ImageView>
     private var selectedImage: ImageView? = null
-
+    private lateinit var taskDao: roomDao
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.nivell2)
-
-        // Lista de las imágenes arrastrables
+        val db = (applicationContext as App).db
+        taskDao = db.taskDao()
+        // Llista de les imatges arrossegables
         imageViews = listOf(
             findViewById(R.id.historia1),
             findViewById(R.id.historia2),
@@ -25,7 +33,7 @@ class Nivell2 : AppCompatActivity() {
             findViewById(R.id.historia6)
         )
 
-        // Lista de las ImageView de destino
+        // Llista de les ImageView de destí
         resultViews = listOf(
             findViewById(R.id.ordenat1),
             findViewById(R.id.ordenat2),
@@ -35,15 +43,15 @@ class Nivell2 : AppCompatActivity() {
             findViewById(R.id.ordenat6)
         )
 
-        // Establecer OnClickListener para las imágenes arrastrables
+        // Establir OnClickListener per a les imatges arrossegables
         imageViews.forEachIndexed { index, imageView ->
             imageView.setOnClickListener {
                 selectedImage = imageView
-                Toast.makeText(this@Nivell2, "Imagen seleccionada", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Nivell2, "Imatge seleccionada", Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Establecer OnClickListener para las ImageView de destino
+        // Establir OnClickListener per a les ImageView de destí
         resultViews.forEachIndexed { index, resultView ->
             resultView.setOnClickListener {
                 selectedImage?.let { selectedImageView ->
@@ -51,16 +59,29 @@ class Nivell2 : AppCompatActivity() {
                     val correctImageView = imageViews[index]
                     if (selectedImageView == correctImageView) {
                         resultView.setImageDrawable(drawable)
-                        selectedImage?.visibility = View.GONE // Ocultar el ImageView de origen
+                        selectedImage?.visibility = View.GONE // Ocultar la ImageView d'origen
                         selectedImage = null
                         if (checkAllImagesInPlace()) {
-                            showMessage("¡Felicidades! Has completado el rompecabezas.")
-                            finish()
+                            CoroutineScope(Dispatchers.IO).launch {
+                                val task = roomTask(nivell = 2, punts = 1, completat = true)
+                                taskDao.insertLvl(task)
+                                taskDao.updateLvl(task)
+
+                                withContext(Dispatchers.Main) {
+                                    AlertDialog.Builder(this@Nivell2)
+                                        .setTitle("Felicitats!")
+                                        .setMessage("Has completat el joc.")
+                                        .setPositiveButton("Acceptar") { _, _ ->
+                                            finish()
+                                        }
+                                        .show()
+                                }
+                            }
                         } else {
-                            showMessage("¡Bien hecho! Has colocado una imagen en su lugar correcto.")
+                            showMessage("Bé fet! Has col·locat una imatge al lloc correcte.")
                         }
                     } else {
-                        showMessage("¡Selecciona una imagen correcta para este espacio!")
+                        showMessage("Selecciona una imatge correcta per a aquest espai!")
                     }
                 }
             }
@@ -68,7 +89,7 @@ class Nivell2 : AppCompatActivity() {
 
     }
 
-    // Comprobar si todas las imágenes están en su lugar correcto
+    // Comprovar si totes les imatges estan al seu lloc correcte
     private fun checkAllImagesInPlace(): Boolean {
         return imageViews.zip(resultViews).all { (imageView, resultView) ->
             val imageViewDrawable = imageView.drawable
@@ -78,8 +99,7 @@ class Nivell2 : AppCompatActivity() {
         }
     }
 
-
-    // Mostrar un mensaje
+    // Mostrar un missatge
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
